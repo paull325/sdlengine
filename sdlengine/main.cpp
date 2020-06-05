@@ -3,8 +3,7 @@
 #include <engine.h>
 
 simpleEngine::globalScene global;
-
-Uint8* keyboard;
+simpleEngine::window window;
 
 namespace gameObjectFunction /*gameObject load and update functions here*/
 {
@@ -26,16 +25,18 @@ namespace gameObjectFunction /*gameObject load and update functions here*/
 
 namespace sceneFunction /*scene load and update functions here*/
 {
-    
     void load_scene1()
     {
         simpleEngine::gameObject testObj("TESTOBJ", &gameObjectFunction::load_testObj, &gameObjectFunction::update_testObj);
         global.getSceneById(0)->addGameObject(testObj);
     }
 
+    int i = 0;
+
     void update_scene1()
     {
-        
+        window.renderImage("image.png", i, 100);
+        i++;
     }
 
 }
@@ -53,8 +54,6 @@ void startGame()
 int main(int argc, char* argv[])
 {
     SDL_SetMainReady();
-
-    simpleEngine::window window;
 
     if (!window.create("Title", 800, 600))
     {

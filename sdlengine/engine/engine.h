@@ -15,10 +15,12 @@ namespace simpleEngine
 		window();
 		~window();
 
-		bool create(const std::string windowTitle, const int windowWidth, const int windowHeight);
+		bool create(const std::string& windowTitle, const int windowWidth, const int windowHeight);
+		bool renderImage(const std::string& imagePath, const int xPosition, const int yPosition);
 
 	private:
 		SDL_Window* m_window;
+		SDL_Renderer* renderer;
 
 		bool init();
 	};
@@ -26,12 +28,12 @@ namespace simpleEngine
 	class gameObject
 	{
 	public:
-		gameObject(const std::string gameObjectName);
-		gameObject(const std::string gameObjectName, void(*loadFunction)(), void(*updateFunction)());
+		gameObject(const std::string& gameObjectName);
+		gameObject(const std::string& gameObjectName, void(*loadFunction)(), void(*updateFunction)());
 		~gameObject();
 
 		std::string gameObjectName();
-		void setGameObjectName(const std::string gameObjectName);
+		void setGameObjectName(const std::string& gameObjectName);
 
 		void onLoad();
 		void setUpdateFunction(void(*updateFunction)());
@@ -48,21 +50,21 @@ namespace simpleEngine
 	{
 	public:
 		scene();
-		scene(std::string sceneName, void(*loadFunction)(), void(*updateFunction)());
+		scene(const std::string& sceneName, void(*loadFunction)(), void(*updateFunction)());
 		~scene();
 
 		std::string sceneName();
-		void setSceneName(const std::string gameObjectName);
+		void setSceneName(const std::string& gameObjectName);
 
 		void end();
 		void onLoad();
 		void update();
 
 		bool addGameObject(gameObject obj);
-		gameObject* getGameObjectByName(const std::string gameObjectName);
-		gameObject* getGameObjectById(unsigned int id);
+		gameObject* getGameObjectByName(const std::string& gameObjectName);
+		gameObject* getGameObjectById(const int id);
 
-		unsigned int getGameObjectListSize();
+		size_t getGameObjectListSize();
 
 	protected:
 		bool m_active;
@@ -85,10 +87,10 @@ namespace simpleEngine
 
 		bool addScene(scene sc);
 		bool unloadSceneByName(const std::string sceneName);
-		bool unloadSceneById(unsigned int id);
+		bool unloadSceneById(const int id);
 
 		scene* getSceneByName(const std::string sceneName);
-		scene* getSceneById(unsigned int id);
+		scene* getSceneById(const int id);
 
 		bool start();
 
@@ -96,45 +98,7 @@ namespace simpleEngine
 		std::vector<scene> m_sceneList;
 		unsigned int m_sceneID;
 	};
-
-
-	/*/////////////////////LEGACY////////////////////////
-	class game
-	{
-	public:
-		game();
-		~game();
-
-		bool start();
-		void end();
-
-		bool addGameObject(gameObject obj);
-		gameObject* getGameObject(const std::string gameObjectName);
-	
-	protected:
-		bool m_active;
-		std::vector<gameObject> m_gameObjectList;
-
-		virtual bool init();
-	};
-
-	class scene : public game
-	{
-	public:
-		scene(std::string sceneName, void(*loadFunction)(), void(*updateFunction)());
-		~scene();
-
-		void onLoad();
-		void update();
-
-	private:
-		std::string m_sceneName;
-		std::vector<game> m_sceneList;
-
-		void(*m_updateFunction)();
-		void(*m_loadFunction)();
-	};
-	///////////////////////////////////////////////////////*/
 }
 
 extern simpleEngine::globalScene global;
+extern simpleEngine::window window;

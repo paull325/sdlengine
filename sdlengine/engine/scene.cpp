@@ -8,7 +8,7 @@ namespace simpleEngine
 			std::cout << "Initialization failed." << std::endl;
 	}
 
-	scene::scene(std::string sceneName, void(*loadFunction)(), void(*updateFunction)())
+	scene::scene(const std::string& sceneName, void(*loadFunction)(), void(*updateFunction)())
 	{
 		m_sceneName = sceneName;
 		m_loadFunction = loadFunction;
@@ -35,7 +35,7 @@ namespace simpleEngine
 		return m_sceneName;
 	}
 
-	void scene::setSceneName(const std::string sceneName)
+	void scene::setSceneName(const std::string& sceneName)
 	{
 		m_sceneName = sceneName;
 	}
@@ -58,7 +58,7 @@ namespace simpleEngine
 		return true;
 	}
 
-	gameObject* scene::getGameObjectByName(const std::string gameObjectName)
+	gameObject* scene::getGameObjectByName(const std::string& gameObjectName)
 	{
 		for (int i = 0; i < m_gameObjectList.size(); i++)
 		{
@@ -68,14 +68,15 @@ namespace simpleEngine
 
 			}
 		}
+		return nullptr;
 	}
 
-	gameObject* scene::getGameObjectById(unsigned int id)
+	gameObject* scene::getGameObjectById(const int id)
 	{
 		return &m_gameObjectList[id];
 	}
 
-	unsigned int scene::getGameObjectListSize()
+	size_t scene::getGameObjectListSize()
 	{
 		return m_gameObjectList.size();
 	}

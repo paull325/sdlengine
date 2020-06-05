@@ -42,7 +42,7 @@ namespace simpleEngine
 		return true;
 	}
 
-	bool globalScene::unloadSceneById(unsigned int id)
+	bool globalScene::unloadSceneById(const int id)
 	{
 		m_sceneList.erase(m_sceneList.begin() + id);
 		return true;
@@ -56,12 +56,12 @@ namespace simpleEngine
 			if (m_sceneList[i].sceneName() == sceneName)
 			{
 				return &m_sceneList[i];
-
 			}
 		}
+		return nullptr;
 	}
 
-	scene* globalScene::getSceneById(unsigned int id)
+	scene* globalScene::getSceneById(const int id)
 	{
 		return &m_sceneList[id];
 	}
@@ -90,7 +90,7 @@ namespace simpleEngine
 					m_sceneList[m_sceneID].getGameObjectById(i)->updateGameObject();
 				}
 			}
-			SDL_Delay(20);
+			SDL_Delay(50);
 			std::cout << "Frame updated." << std::endl;
 		}
 		std::cout << "Break game loop." << std::endl;
