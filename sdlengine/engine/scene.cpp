@@ -5,17 +5,25 @@ namespace simpleEngine
 	scene::scene()
 	{
 		if (!init())
+		{
 			std::cout << "Initialization failed." << std::endl;
+		}
+		else
+		{
+			std::cout << "Scene" << sceneName() << " initialized." << std::endl;
+		}
 	}
 
-	scene::scene(const std::string& sceneName, void(*loadFunction)(), void(*updateFunction)())
+	scene::scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction)
 	{
 		m_sceneName = sceneName;
 		m_loadFunction = loadFunction;
 		m_updateFunction = updateFunction;
 
 		if (!init())
+		{
 			std::cout << "Initialization failed." << std::endl;
+		}
 	}
 
 	scene::~scene()
@@ -26,7 +34,6 @@ namespace simpleEngine
 	bool scene::init()
 	{
 		m_active = true;
-		std::cout << "Scene" << sceneName() << " initialized." << std::endl;
 		return true;
 	}
 
@@ -45,11 +52,11 @@ namespace simpleEngine
 		m_active = false;
 	}
 
-	bool scene::addGameObject(gameObject obj)
+	bool scene::addGameObject(gameObject& obj)
 	{
 		try
 		{
-			m_gameObjectList.push_back(obj);
+			m_gameObjectList.emplace_back(std::move(obj));
 		}
 		catch (std::bad_alloc& exception)
 		{
@@ -71,7 +78,7 @@ namespace simpleEngine
 		return nullptr;
 	}
 
-	gameObject* scene::getGameObjectById(const int id)
+	gameObject* scene::getGameObjectById(int id)
 	{
 		return &m_gameObjectList[id];
 	}

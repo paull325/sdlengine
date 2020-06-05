@@ -4,11 +4,15 @@ namespace simpleEngine
 {
 	window::window()
 	{
-        if(!init())
+        if (!init())
+        {
             std::cout << "Initialization failed." << std::endl;
+        }
         else
+        {
             std::cout << "Window created." << std::endl;
-	}
+        }
+    }
 
 	window::~window()
 	{
@@ -40,7 +44,8 @@ namespace simpleEngine
             SDL_WINDOW_OPENGL
         );
 
-        if (m_window == NULL) {
+        if (m_window == NULL)
+        {
             return false;
         }
 

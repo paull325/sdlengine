@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -15,8 +16,8 @@ namespace simpleEngine
 		window();
 		~window();
 
-		bool create(const std::string& windowTitle, const int windowWidth, const int windowHeight);
-		bool renderImage(const std::string& imagePath, const int xPosition, const int yPosition);
+		bool create(const std::string& windowTitle, int windowWidth, int windowHeight);
+		bool renderImage(const std::string& imagePath, int xPosition, int yPosition);
 
 	private:
 		SDL_Window* m_window;
@@ -29,28 +30,28 @@ namespace simpleEngine
 	{
 	public:
 		gameObject(const std::string& gameObjectName);
-		gameObject(const std::string& gameObjectName, void(*loadFunction)(), void(*updateFunction)());
+		gameObject(const std::string& gameObjectName, std::function<void()> loadFunction, std::function<void()> updateFunction);
 		~gameObject();
 
 		std::string gameObjectName();
 		void setGameObjectName(const std::string& gameObjectName);
 
 		void onLoad();
-		void setUpdateFunction(void(*updateFunction)());
+		void setUpdateFunction(std::function<void()> updateFunction);
 		void updateGameObject();
 
 	private:
 		std::string m_gameObjectName;
 
-		void(*m_updateFunction)();
-		void(*m_loadFunction)();
+		std::function<void()> m_updateFunction;
+		std::function<void()> m_loadFunction;
 	};
 
 	class scene
 	{
 	public:
 		scene();
-		scene(const std::string& sceneName, void(*loadFunction)(), void(*updateFunction)());
+		scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction);
 		~scene();
 
 		std::string sceneName();
@@ -60,9 +61,9 @@ namespace simpleEngine
 		void onLoad();
 		void update();
 
-		bool addGameObject(gameObject obj);
+		bool addGameObject(gameObject& obj);
 		gameObject* getGameObjectByName(const std::string& gameObjectName);
-		gameObject* getGameObjectById(const int id);
+		gameObject* getGameObjectById(int id);
 
 		size_t getGameObjectListSize();
 
@@ -75,8 +76,8 @@ namespace simpleEngine
 	private:
 		std::string m_sceneName;
 
-		void(*m_updateFunction)();
-		void(*m_loadFunction)();
+		std::function<void()> m_updateFunction;
+		std::function<void()> m_loadFunction;
 	};
 
 	class globalScene : public scene
@@ -85,18 +86,18 @@ namespace simpleEngine
 		globalScene();
 		~globalScene();
 
-		bool addScene(scene sc);
+		bool addScene(scene& sc);
 		bool unloadSceneByName(const std::string sceneName);
-		bool unloadSceneById(const int id);
+		bool unloadSceneById(int id);
 
 		scene* getSceneByName(const std::string sceneName);
-		scene* getSceneById(const int id);
+		scene* getSceneById(int id);
 
 		bool start();
 
 	private:
 		std::vector<scene> m_sceneList;
-		unsigned int m_sceneID;
+		int m_sceneID;
 	};
 }
 

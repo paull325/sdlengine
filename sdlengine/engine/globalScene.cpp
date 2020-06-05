@@ -9,6 +9,10 @@ namespace simpleEngine
 		{
 			std::cout << "Initialization failed." << std::endl;
 		}
+		else
+		{
+			std::cout << "Global scene " << sceneName() << " initialized." << std::endl;
+		}
 	}
 
 	globalScene::~globalScene()
@@ -16,11 +20,11 @@ namespace simpleEngine
 
 	}
 
-	bool globalScene::addScene(scene sc)
+	bool globalScene::addScene(scene& sc)
 	{
 		try
 		{
-			m_sceneList.push_back(sc);
+			m_sceneList.emplace_back(std::move(sc));
 		}
 		catch (std::bad_alloc& exception)
 		{
@@ -42,7 +46,7 @@ namespace simpleEngine
 		return true;
 	}
 
-	bool globalScene::unloadSceneById(const int id)
+	bool globalScene::unloadSceneById(int id)
 	{
 		m_sceneList.erase(m_sceneList.begin() + id);
 		return true;
@@ -61,7 +65,7 @@ namespace simpleEngine
 		return nullptr;
 	}
 
-	scene* globalScene::getSceneById(const int id)
+	scene* globalScene::getSceneById(int id)
 	{
 		return &m_sceneList[id];
 	}

@@ -11,7 +11,7 @@ namespace simpleEngine
 		onLoad();
 	}
 
-	gameObject::gameObject(const std::string& gameObjectName, void(*loadFunction)(), void(*updateFunction)())
+	gameObject::gameObject(const std::string& gameObjectName, std::function<void()> loadFunction, std::function<void()> updateFunction)
 	{
 		m_gameObjectName = gameObjectName;
 		m_loadFunction = loadFunction;
@@ -45,7 +45,7 @@ namespace simpleEngine
 		}
 	}
 
-	void gameObject::setUpdateFunction(void(*updateFunction)())
+	void gameObject::setUpdateFunction(std::function<void()> updateFunction)
 	{
 		m_updateFunction = updateFunction;
 	}
