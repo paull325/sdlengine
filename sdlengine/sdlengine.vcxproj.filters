@@ -16,6 +16,9 @@
     <Filter Include="Source Files\engine">
       <UniqueIdentifier>{523962bf-ee33-4396-ad30-8dff36015232}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\engine">
+      <UniqueIdentifier>{a6bf691f-a70a-46cb-b45b-1d2fca7c30ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,7 +38,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\engine.h">
+    <ClInclude Include="engine\stdinclude.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\gameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\globalScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

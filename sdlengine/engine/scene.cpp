@@ -1,4 +1,6 @@
-#include <engine.h>
+#include "stdinclude.h"
+#include "scene.h"
+#include "gameObject.h"
 
 namespace simpleEngine
 {
@@ -11,7 +13,7 @@ namespace simpleEngine
 		else
 		{
 			std::cout << "Scene" << sceneName() << " initialized." << std::endl;
-		}
+		}	
 	}
 
 	scene::scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction)

@@ -161,7 +161,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\engine.h" />
+    <ClInclude Include="engine\gameObject.h" />
+    <ClInclude Include="engine\globalScene.h" />
+    <ClInclude Include="engine\scene.h" />
+    <ClInclude Include="engine\window.h" />
+    <ClInclude Include="engine\stdinclude.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

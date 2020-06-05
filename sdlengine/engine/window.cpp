@@ -1,4 +1,5 @@
-#include <engine.h>
+#include "stdinclude.h"
+#include "window.h"
 
 namespace simpleEngine
 {

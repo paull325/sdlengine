@@ -1,4 +1,5 @@
-#include <engine.h>
+#include "stdinclude.h"
+#include "gameObject.h"
 
 namespace simpleEngine
 {

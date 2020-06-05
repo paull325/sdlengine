@@ -1,6 +1,10 @@
 #define SDL_MAIN_HANDLED
 
-#include <engine.h>
+#include "engine/stdinclude.h"
+
+#include "engine/window.h"
+#include "engine/gameObject.h"
+#include "engine/globalScene.h"
 
 simpleEngine::globalScene global;
 simpleEngine::window window;
