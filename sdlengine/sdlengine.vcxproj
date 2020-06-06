@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\entity.cpp" />
+    <ClCompile Include="engine\input.cpp" />
     <ClCompile Include="engine\scene.cpp" />
     <ClCompile Include="engine\gameObject.cpp" />
     <ClCompile Include="engine\globalScene.cpp" />
@@ -163,7 +165,9 @@
   <ItemGroup>
     <ClInclude Include="engine\gameObject.h" />
     <ClInclude Include="engine\globalScene.h" />
+    <ClInclude Include="engine\input.h" />
     <ClInclude Include="engine\scene.h" />
+    <ClInclude Include="engine\simpleEngine_prototype.h" />
     <ClInclude Include="engine\window.h" />
     <ClInclude Include="engine\stdinclude.h" />
   </ItemGroup>

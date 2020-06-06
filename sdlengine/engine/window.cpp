@@ -5,14 +5,9 @@ namespace simpleEngine
 {
 	window::window()
 	{
-        if (!init())
-        {
-            std::cout << "Initialization failed." << std::endl;
-        }
-        else
-        {
-            std::cout << "Window created." << std::endl;
-        }
+        m_window = NULL;
+        
+        std::cout << "Window created." << std::endl;
     }
 
 	window::~window()
@@ -25,12 +20,6 @@ namespace simpleEngine
 
         std::cout << "Window closed." << std::endl;
 	}
-
-    bool window::init()
-    {
-        m_window = NULL;
-        return true;
-    }
 
 	bool window::create(const std::string& windowTitle, const int windowWidth, const int windowHeight)
 	{
@@ -61,16 +50,14 @@ namespace simpleEngine
         return true;
 	}
 
-    bool window::renderImage(const std::string& imagePath, const int xPosition, const int yPosition)
+    bool window::renderImage(SDL_Surface* image, int xPosition, int yPosition)
     {
-        SDL_Surface* image = IMG_Load(imagePath.c_str());
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
         SDL_Rect rect = { xPosition, yPosition, 10, 10 };
         SDL_RenderCopy(renderer, texture, NULL, &rect);
         SDL_RenderPresent(renderer);
 
         SDL_DestroyTexture(texture);
-        SDL_FreeSurface(image);
 
         return true;
     }

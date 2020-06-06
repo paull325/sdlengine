@@ -7,14 +7,7 @@ namespace simpleEngine
 	globalScene::globalScene()
 	{
 		m_sceneID = 0;
-		if (!init())
-		{
-			std::cout << "Initialization failed." << std::endl;
-		}
-		else
-		{
-			std::cout << "Global scene " << sceneName() << " initialized." << std::endl;
-		}
+		std::cout << "Global scene " << sceneName() << " initialized." << std::endl;
 	}
 
 	globalScene::~globalScene()
@@ -76,27 +69,45 @@ namespace simpleEngine
 	{
 		m_active = true;
 
+		if (m_sceneList.size() == 0)
+		{
+			return false;
+		}
+
 		m_sceneList[m_sceneID].onLoad();
 		while (m_active)
 		{
-			m_sceneList[m_sceneID].update();
+			m_sceneList[m_sceneID].update();			//update scene
 
-			if (m_gameObjectList.size() != 0) // update global game objects
+			if (m_gameObjectList.size() != 0)			// update global game objects
 			{
 				for (int i = 0; i < m_gameObjectList.size(); i++)
 				{
-					m_gameObjectList[i].updateGameObject();
+					m_gameObjectList[i]->updateGameObject();
 				}
 			}
-
-			if (m_sceneList[m_sceneID].getGameObjectListSize() != 0) // update local game objects
+			if (m_entityList.size() != 0)			// update global entities
 			{
-				for (int i = 0; i < m_sceneList[m_sceneID].getGameObjectListSize(); i++)
+				for (int i = 0; i < m_entityList.size(); i++)
+				{
+					m_entityList[i]->updateGameObject();
+				}
+			}
+			if (m_sceneList[m_sceneID].gameObjectListSize() != 0) // update local game objects
+			{
+				for (int i = 0; i < m_sceneList[m_sceneID].gameObjectListSize(); i++)
 				{
 					m_sceneList[m_sceneID].getGameObjectById(i)->updateGameObject();
 				}
 			}
-			SDL_Delay(50);
+			if (m_sceneList[m_sceneID].entityListSize() != 0) // update local entities
+			{
+				for (int i = 0; i < m_sceneList[m_sceneID].entityListSize(); i++)
+				{
+					m_sceneList[m_sceneID].getEntityById(i)->updateGameObject();
+				}
+			}
+			SDL_Delay(40);
 			std::cout << "Frame updated." << std::endl;
 		}
 		std::cout << "Break game loop." << std::endl;

@@ -3,17 +3,27 @@
 
 namespace simpleEngine
 {
+	gameObject::gameObject()
+	{
+		m_active = false;
+		m_gameObjectName = "";
+		m_loadFunction, m_updateFunction = nullptr;
+
+		onLoad();
+	}
+
 	gameObject::gameObject(const std::string& gameObjectName)
 	{
+		m_active = true;
 		m_gameObjectName = gameObjectName;
-		m_loadFunction = nullptr;
-		m_updateFunction = nullptr;
+		m_loadFunction, m_updateFunction = nullptr;
 
 		onLoad();
 	}
 
 	gameObject::gameObject(const std::string& gameObjectName, std::function<void()> loadFunction, std::function<void()> updateFunction)
 	{
+		m_active = true;
 		m_gameObjectName = gameObjectName;
 		m_loadFunction = loadFunction;
 		m_updateFunction = updateFunction;
@@ -55,6 +65,19 @@ namespace simpleEngine
 	{
 		std::cout << "Game object " << m_gameObjectName << " updated." << std::endl;
 
-		m_updateFunction();
+		if (m_updateFunction != nullptr && m_active)
+		{
+			m_updateFunction();
+		}
+	}
+
+	void gameObject::activate()
+	{
+		m_active = true;
+	}
+
+	void gameObject::deactivate()
+	{
+		m_active = false;
 	}
 }

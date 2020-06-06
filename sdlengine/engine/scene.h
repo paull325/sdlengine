@@ -3,8 +3,6 @@
 
 namespace simpleEngine
 {
-	class gameObject;
-
 	class scene
 	{
 	public:
@@ -20,22 +18,24 @@ namespace simpleEngine
 		void update();
 
 		bool addGameObject(gameObject& obj);
-		gameObject* getGameObjectByName(const std::string& gameObjectName);
-		gameObject* getGameObjectById(int id);
+		gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
+		gameObjectPtr getGameObjectById(int id);
+		size_t gameObjectListSize();
 
-		size_t getGameObjectListSize();
+		bool addEntity(entity& obj);
+		entityPtr getEntityByName(const std::string& entityName);
+		entityPtr getEntityById(int id);
+		size_t entityListSize();
 
 	protected:
 		bool m_active;
-		std::vector<gameObject> m_gameObjectList;
-
-		virtual bool init();
+		std::vector<gameObjectPtr> m_gameObjectList;
+		std::vector<entityPtr> m_entityList;
 
 	private:
 		std::string m_sceneName;
 
-		std::function<void()> m_updateFunction;
-		std::function<void()> m_loadFunction;
+		std::function<void()> m_loadFunction, m_updateFunction;
 	};
 
 }

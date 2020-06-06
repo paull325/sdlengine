@@ -5,24 +5,39 @@
 #include "engine/window.h"
 #include "engine/gameObject.h"
 #include "engine/globalScene.h"
+#include "engine/input.h"
 
 simpleEngine::globalScene global;
-simpleEngine::window window;
+simpleEngine::window globalWindow;
 
 namespace gameObjectFunction /*gameObject load and update functions here*/
 {
     
-    void load_testObj()
+    void load_testEnt()
     {
 
     }
 
-    void update_testObj()
+    void update_testEnt()
     {
-        SDL_PumpEvents();
-        const Uint8* keystate = SDL_GetKeyboardState(NULL);
-        if (keystate[SDL_SCANCODE_ESCAPE]) {
+        if (simpleEngine::checkKeyDown(SDL_SCANCODE_ESCAPE)) {
             global.end();
+        }
+        if (simpleEngine::checkKeyDown(SDL_SCANCODE_W))
+        {
+            global.getSceneById(0)->getEntityById(0)->move(0, -10);
+        }
+        else if (simpleEngine::checkKeyDown(SDL_SCANCODE_S))
+        {
+            global.getSceneById(0)->getEntityById(0)->move(0, 10);
+        }
+        if (simpleEngine::checkKeyDown(SDL_SCANCODE_A))
+        {
+            global.getSceneById(0)->getEntityById(0)->move(-10, 0);
+        }
+        else if (simpleEngine::checkKeyDown(SDL_SCANCODE_D))
+        {
+            global.getSceneById(0)->getEntityById(0)->move(10, 0);
         }
     }
 }
@@ -31,21 +46,19 @@ namespace sceneFunction /*scene load and update functions here*/
 {
     void load_scene1()
     {
-        simpleEngine::gameObject testObj("TESTOBJ", &gameObjectFunction::load_testObj, &gameObjectFunction::update_testObj);
-        global.getSceneById(0)->addGameObject(testObj);
+        simpleEngine::entity testEnt("ENTITY", &gameObjectFunction::load_testEnt, &gameObjectFunction::update_testEnt);
+        testEnt.loadSprite("image.png");
+        global.getSceneById(0)->addEntity(testEnt);
     }
-
-    int i = 0;
 
     void update_scene1()
     {
-        window.renderImage("image.png", i, 100);
-        i++;
+       
     }
 
 }
 
-void startGame()
+void startGame()  /*add scenes here*/
 {
     {
         simpleEngine::scene scene1("scene1", &sceneFunction::load_scene1, &sceneFunction::update_scene1);
@@ -59,7 +72,7 @@ int main(int argc, char* argv[])
 {
     SDL_SetMainReady();
 
-    if (!window.create("Title", 800, 600))
+    if (!globalWindow.create("Title", 800, 600))
     {
         std::cout << "Error while creating window" << std::endl;
         return 1;
