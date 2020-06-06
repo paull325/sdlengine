@@ -13,7 +13,6 @@ namespace simpleEngine
 		std::string sceneName();
 		void setSceneName(const std::string& gameObjectName);
 
-		void end();
 		void onLoad();
 		void update();
 
@@ -28,7 +27,6 @@ namespace simpleEngine
 		size_t entityListSize();
 
 	protected:
-		bool m_active;
 		std::vector<gameObjectPtr> m_gameObjectList;
 		std::vector<entityPtr> m_entityList;
 

@@ -6,6 +6,7 @@ namespace simpleEngine
 	window::window()
 	{
         m_window = NULL;
+        renderer = NULL;
         
         std::cout << "Window created." << std::endl;
     }
@@ -45,20 +46,38 @@ namespace simpleEngine
             printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
             return false;
         }
-        renderer = SDL_CreateRenderer(m_window, -1, 0);
+        renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 
         return true;
 	}
 
     bool window::renderImage(SDL_Surface* image, int xPosition, int yPosition)
     {
+        SDL_RenderClear(renderer);
+
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
         SDL_Rect rect = { xPosition, yPosition, 10, 10 };
         SDL_RenderCopy(renderer, texture, NULL, &rect);
+
         SDL_RenderPresent(renderer);
 
         SDL_DestroyTexture(texture);
 
         return true;
+    }
+
+    //TODO: render all textures at once
+
+    void window::reset()
+    {
+        SDL_Surface* s;
+        s = SDL_CreateRGBSurface(0, 800, 600, 32, 0, 0, 0, 0);
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, s);
+        SDL_Rect rect = { 0, 0, 800, 600 };
+        SDL_RenderCopy(renderer, texture, NULL, &rect);
+        SDL_RenderPresent(renderer);
+
+        SDL_DestroyTexture(texture);
     }
 }

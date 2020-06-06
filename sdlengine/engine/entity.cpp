@@ -58,11 +58,11 @@ namespace simpleEngine
 
 		if (m_updateFunction != nullptr && m_active)
 		{
-			if (m_sprite != nullptr)
-			{
-				updateSprite();
-			}
 			m_updateFunction();
+		}
+		if (m_sprite != nullptr)
+		{
+			updateSprite();
 		}
 	}
 

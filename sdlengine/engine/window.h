@@ -11,6 +11,7 @@ namespace simpleEngine
 
 		bool create(const std::string& windowTitle, int windowWidth, int windowHeight);
 		bool renderImage(SDL_Surface* image, int xPosition, int yPosition);
+		void reset();
 
 	private:
 		SDL_Window* m_window;

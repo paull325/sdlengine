@@ -1,6 +1,7 @@
 #include "stdinclude.h"
 #include "globalScene.h"
 #include "gameObject.h"
+#include "window.h"
 
 namespace simpleEngine
 {
@@ -13,6 +14,11 @@ namespace simpleEngine
 	globalScene::~globalScene()
 	{
 
+	}
+
+	void globalScene::end()
+	{
+		m_active = false;
 	}
 
 	bool globalScene::addScene(scene& sc)
@@ -74,7 +80,8 @@ namespace simpleEngine
 			return false;
 		}
 
-		m_sceneList[m_sceneID].onLoad();
+		m_sceneList[m_sceneID].onLoad();				//on scene load
+
 		while (m_active)
 		{
 			m_sceneList[m_sceneID].update();			//update scene
@@ -107,10 +114,11 @@ namespace simpleEngine
 					m_sceneList[m_sceneID].getEntityById(i)->updateGameObject();
 				}
 			}
-			SDL_Delay(40);
+			SDL_Delay(16);
 			std::cout << "Frame updated." << std::endl;
 		}
 		std::cout << "Break game loop." << std::endl;
+		globalWindow.reset();
 		return true;
 	}
 }

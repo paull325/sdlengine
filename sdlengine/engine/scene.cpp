@@ -8,7 +8,6 @@ namespace simpleEngine
 	{
 		m_sceneName = "";
 		m_loadFunction, m_updateFunction = nullptr;
-		m_active = true;
 	}
 
 	scene::scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction)
@@ -16,7 +15,6 @@ namespace simpleEngine
 		m_sceneName = sceneName;
 		m_loadFunction = loadFunction;
 		m_updateFunction = updateFunction;
-		m_active = true;
 	}
 
 	scene::~scene()
@@ -50,11 +48,6 @@ namespace simpleEngine
 		{
 			m_updateFunction();
 		}
-	}
-
-	void scene::end()
-	{
-		m_active = false;
 	}
 
 	/*			GAMEOBJECT				*/

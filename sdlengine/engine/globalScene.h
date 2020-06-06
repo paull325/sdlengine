@@ -10,6 +10,8 @@ namespace simpleEngine
 		globalScene();
 		~globalScene();
 
+		void end();
+
 		bool addScene(scene& sc);
 		bool unloadSceneByName(const std::string sceneName);
 		bool unloadSceneById(int id);
@@ -21,6 +23,7 @@ namespace simpleEngine
 
 	private:
 		std::vector<scene> m_sceneList;
+		bool m_active;
 		int m_sceneID;
 	};
 }
