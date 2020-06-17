@@ -11,6 +11,7 @@ namespace simpleEngine
 
 		bool create(const std::string& windowTitle, int windowWidth, int windowHeight);
 		bool renderImage(SDL_Surface* image, int xPosition, int yPosition);
+		void render();
 		void reset();
 
 	private:
@@ -18,5 +19,3 @@ namespace simpleEngine
 		SDL_Renderer* renderer;
 	};
 }
-
-extern simpleEngine::window globalWindow;

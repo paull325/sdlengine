@@ -54,20 +54,21 @@ namespace simpleEngine
 
     bool window::renderImage(SDL_Surface* image, int xPosition, int yPosition)
     {
-        SDL_RenderClear(renderer);
-
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
         SDL_Rect rect = { xPosition, yPosition, 10, 10 };
         SDL_RenderCopy(renderer, texture, NULL, &rect);
-
-        SDL_RenderPresent(renderer);
 
         SDL_DestroyTexture(texture);
 
         return true;
     }
 
-    //TODO: render all textures at once
+
+    void window::render()
+    {
+        SDL_RenderPresent(renderer);
+        SDL_RenderClear(renderer);
+    }
 
     void window::reset()
     {
@@ -76,8 +77,7 @@ namespace simpleEngine
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, s);
         SDL_Rect rect = { 0, 0, 800, 600 };
         SDL_RenderCopy(renderer, texture, NULL, &rect);
-        SDL_RenderPresent(renderer);
-
+        
         SDL_DestroyTexture(texture);
     }
 }

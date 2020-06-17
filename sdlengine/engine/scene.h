@@ -6,34 +6,33 @@ namespace simpleEngine
 	class scene
 	{
 	public:
-		scene();
-		scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction);
+		scene() { m_sceneName = ""; m_active = false; };
+		scene(const std::string& sceneName) { m_sceneName = sceneName; m_active = true; };
 		~scene();
 
-		std::string sceneName();
-		void setSceneName(const std::string& gameObjectName);
+		void sceneName(const std::string& sceneName) { m_sceneName = sceneName; };
+		const std::string& sceneName() const { return m_sceneName; }
 
-		void onLoad();
+		void load();
 		void update();
 
-		bool addGameObject(gameObject& obj);
-		gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
-		gameObjectPtr getGameObjectById(int id);
-		size_t gameObjectListSize();
+		void activate() { m_active = true; };
+		void deactivate() { m_active = false; };;
 
-		bool addEntity(entity& obj);
-		entityPtr getEntityByName(const std::string& entityName);
-		entityPtr getEntityById(int id);
-		size_t entityListSize();
+		bool addPlayer(player& p);
+		const playerPtr getPlayerById(int id) { return m_playerList.at(id); };
+
+		bool addGameObject(gameObject& obj);
+		const gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
+		const gameObjectPtr getGameObjectById(int id) { return m_gameObjectList.at(id); };
 
 	protected:
+		bool m_active;
+
 		std::vector<gameObjectPtr> m_gameObjectList;
-		std::vector<entityPtr> m_entityList;
+		std::vector<playerPtr> m_playerList;
 
-	private:
 		std::string m_sceneName;
-
-		std::function<void()> m_loadFunction, m_updateFunction;
 	};
 
 }

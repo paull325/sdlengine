@@ -1,18 +1,15 @@
 #include "stdinclude.h"
-#include "input.h"
+#include "entity.h"
 
 namespace simpleEngine
 {
-    const Uint8* keystate = SDL_GetKeyboardState(NULL);
-    //SDL_Event e;
-
-    bool checkKeyDown(SDL_Scancode code)
+    void keyListener::update()
     {
-        SDL_PumpEvents();
+        SDL_PumpEvents(); //or SDL_PollEvent(&e); ?
+    }
 
-        //SDL_PollEvent(&e);
-        //std::cout << e.type << std::endl;
-
+    bool keyListener::checkKeyDown(SDL_Scancode code)
+    {
         if (keystate[code])
         {
             return true;

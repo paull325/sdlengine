@@ -7,10 +7,8 @@ namespace simpleEngine
 	class globalScene : public scene
 	{
 	public:
-		globalScene();
-		~globalScene();
-
-		void end();
+		globalScene(window* win, keyListener* key) { m_window = win; m_key = key; m_active = true; };
+		~globalScene() {};
 
 		bool addScene(scene& sc);
 		bool unloadSceneByName(const std::string sceneName);
@@ -19,13 +17,14 @@ namespace simpleEngine
 		scene* getSceneByName(const std::string sceneName);
 		scene* getSceneById(int id);
 
+		window* getWindow() { return m_window; };
+		keyListener* key() { return m_key; };
+
 		bool start();
 
 	private:
+		keyListener* m_key;
+		window* m_window;
 		std::vector<scene> m_sceneList;
-		bool m_active;
-		int m_sceneID;
 	};
 }
-
-extern simpleEngine::globalScene global;

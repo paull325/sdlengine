@@ -3,8 +3,11 @@
 namespace simpleEngine
 {
 	class gameObject;
-	class entity;
+	class player;
+	class keyListener;
+	class window;
+	class globalScene;
 
 	using gameObjectPtr = std::shared_ptr<gameObject>;
-	using entityPtr = std::shared_ptr<entity>;
+	using playerPtr = std::shared_ptr<player>;
 }

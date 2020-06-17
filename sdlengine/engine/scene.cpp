@@ -1,126 +1,65 @@
 #include "stdinclude.h"
 #include "scene.h"
-#include "gameObject.h"
+#include "entity.h"
 
 namespace simpleEngine
 {
-	scene::scene()
-	{
-		m_sceneName = "";
-		m_loadFunction, m_updateFunction = nullptr;
-	}
-
-	scene::scene(const std::string& sceneName, std::function<void()> loadFunction, std::function<void()> updateFunction)
-	{
-		m_sceneName = sceneName;
-		m_loadFunction = loadFunction;
-		m_updateFunction = updateFunction;
-	}
 
 	scene::~scene()
 	{
 		std::cout << "Scene " << sceneName() << " unloaded." << std::endl;
 	}
 
-	std::string scene::sceneName()
-	{
-		return m_sceneName;
-	}
-
-	void scene::setSceneName(const std::string& sceneName)
-	{
-		m_sceneName = sceneName;
-	}
-
-	void scene::onLoad()
+	void scene::load()
 	{
 		std::cout << "Scene " << m_sceneName << " loaded." << std::endl;
-
-		if (m_loadFunction != nullptr)
-		{
-			m_loadFunction();
-		}
 	}
 
 	void scene::update()
 	{
-		if (m_updateFunction != nullptr)
+		std::cout << "Scene " << m_sceneName << " updated." << std::endl;
+
+		if (m_playerList.size() != 0)			// update player
 		{
-			m_updateFunction();
+			for (int i = 0; i < m_playerList.size(); i++)
+			{
+				m_playerList[i]->update();
+			}
+		}
+		if (m_gameObjectList.size() != 0)			// update game objects
+		{
+			for (int i = 0; i < m_gameObjectList.size(); i++)
+			{
+				m_gameObjectList[i]->update();
+			}
 		}
 	}
+
+	/*			PLAYER				*/
+	bool scene::addPlayer(player& p)
+	{
+		m_playerList.emplace_back(std::make_shared<simpleEngine::player>(std::move(p)));
+		return true;
+	}
+	/*			END	PLAYER			*/
 
 	/*			GAMEOBJECT				*/
 	bool scene::addGameObject(gameObject& obj)
 	{
-		try
-		{
-			m_gameObjectList.emplace_back( std::make_shared<simpleEngine::gameObject>(std::move(obj)) );
-		}
-		catch (std::bad_alloc& exception)
-		{
-			return false;
-		}
+		m_gameObjectList.emplace_back( std::make_shared<simpleEngine::gameObject>(std::move(obj)) );
 		return true;
 	}
 
-	gameObjectPtr scene::getGameObjectByName(const std::string& gameObjectName)
+	const gameObjectPtr scene::getGameObjectByName(const std::string& gameObjectName)
 	{
 		for (int i = 0; i < m_gameObjectList.size(); i++)
 		{
-			if (m_gameObjectList[i]->gameObjectName() == gameObjectName)
+			if (m_gameObjectList[i]->name() == gameObjectName)
 			{
 				return m_gameObjectList[i];
 			}
 		}
 		return nullptr;
 	}
-
-	gameObjectPtr scene::getGameObjectById(int id)
-	{
-		return m_gameObjectList[id];
-	}
-
-	size_t scene::gameObjectListSize()
-	{
-		return m_gameObjectList.size();
-	}
 	/*			END	GAMEOBJECT			*/
-
-	/*				ENTITY				*/
-	bool scene::addEntity(entity& obj)
-	{
-		try
-		{
-			m_entityList.emplace_back(std::make_shared<simpleEngine::entity>(std::move(obj)));
-		}
-		catch (std::bad_alloc& exception)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	entityPtr scene::getEntityByName(const std::string& gameObjectName)
-	{
-		for (int i = 0; i < m_entityList.size(); i++)
-		{
-			if (m_entityList[i]->gameObjectName() == gameObjectName)
-			{
-				return m_entityList[i];
-			}
-		}
-		return nullptr;
-	}
-
-	entityPtr scene::getEntityById(int id)
-	{
-		return m_entityList[id];
-	}
-
-	size_t scene::entityListSize()
-	{
-		return m_entityList.size();
-	}
-	/*			END ENTITY					*/
 }
