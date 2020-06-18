@@ -17,12 +17,9 @@ namespace simpleEngine
 		void update();
 
 		void activate() { m_active = true; };
-		void deactivate() { m_active = false; };;
+		void deactivate() { m_active = false; };
 
-		bool addPlayer(player& p);
-		const playerPtr getPlayerById(int id) { return m_playerList.at(id); };
-
-		bool addGameObject(gameObject& obj);
+		template <typename T> bool addGameObject(T& obj) { m_gameObjectList.emplace_back(std::make_shared<T>(obj)); return true; };
 		const gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
 		const gameObjectPtr getGameObjectById(int id) { return m_gameObjectList.at(id); };
 
@@ -30,7 +27,6 @@ namespace simpleEngine
 		bool m_active;
 
 		std::vector<gameObjectPtr> m_gameObjectList;
-		std::vector<playerPtr> m_playerList;
 
 		std::string m_sceneName;
 	};

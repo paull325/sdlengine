@@ -161,6 +161,7 @@
     <ClCompile Include="engine\globalScene.cpp" />
     <ClCompile Include="engine\window.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="p_movement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\entity.h" />

@@ -27,7 +27,7 @@ namespace simpleEngine
 		keyListener() { keystate = SDL_GetKeyboardState(NULL); };
 		~keyListener() {};
 
-		void update() override;
+		virtual void update();
 
 		bool checkKeyDown(SDL_Scancode code);
 
@@ -43,13 +43,15 @@ namespace simpleEngine
 		gameObject(globalScene* g, const std::string& name);
 		~gameObject();
 
-		void update() override;
+		virtual void update();
 
 		bool loadSprite(const std::string& imagePath);
 
 		void position(int x, int y) { m_xPosition = x; m_yPosition = y;};
 		const int xPosition() const { return m_xPosition; };
 		const int yPosition() const { return m_yPosition; };
+
+		void move(int xDistance, int yDistance) { m_xPosition += xDistance; m_yPosition += yDistance; };
 
 		virtual void updateSprite();
 
@@ -65,8 +67,10 @@ namespace simpleEngine
 		player(globalScene* g);
 		~player();
 
-		void update() override;
-		void updateSprite() override;
-		void move(int xDistance, int yDistance) { m_xPosition += xDistance; m_yPosition += yDistance; };
+		virtual void update();
+		virtual void updateSprite();
+
+		/*		FUNCTIONAL		*/
+		void doMovement();
 	};
 }

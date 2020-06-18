@@ -10,11 +10,15 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
 {
     {
         simpleEngine::scene scene1("scene1");
-        {
-            simpleEngine::player p(global);
-            p.loadSprite("image.png");
-            scene1.addPlayer(p);
-        }
+
+        simpleEngine::player p(global);
+        p.loadSprite("image.png");
+
+        simpleEngine::gameObject g(global, "ABCDERF");
+        g.loadSprite("image.png");
+
+        scene1.addGameObject<simpleEngine::player>(p);
+        scene1.addGameObject<simpleEngine::gameObject>(g);
         global->addScene(scene1);
     }
     global->start();

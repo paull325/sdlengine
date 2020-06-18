@@ -36,6 +36,11 @@ namespace simpleEngine
 	void gameObject::update()
 	{
 		std::cout << "Game object " << m_name << " updated." << std::endl;
+
+		if (m_sprite != nullptr)		// only update sprite when loaded
+		{
+			this->updateSprite();
+		}
 	}
 
 	bool gameObject::loadSprite(const std::string& imagePath)
