@@ -2,6 +2,7 @@
 
 namespace simpleEngine
 {
+	class IEntity;
 	class gameObject;
 	class player;
 	class keyListener;

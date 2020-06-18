@@ -165,7 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\entity.h" />
+    <ClInclude Include="engine\gameObject.h" />
     <ClInclude Include="engine\globalScene.h" />
+    <ClInclude Include="engine\keyListener.h" />
     <ClInclude Include="engine\scene.h" />
     <ClInclude Include="engine\simpleEngine_prototype.h" />
     <ClInclude Include="engine\window.h" />

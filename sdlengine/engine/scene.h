@@ -19,7 +19,7 @@ namespace simpleEngine
 		void activate() { m_active = true; };
 		void deactivate() { m_active = false; };
 
-		template <typename T> bool addGameObject(T& obj) { m_gameObjectList.emplace_back(std::make_shared<T>(obj)); return true; };
+		template <typename T> void addGameObject(T& obj) { m_gameObjectList.emplace_back(std::make_shared<T>(obj)); };
 		const gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
 		const gameObjectPtr getGameObjectById(int id) { return m_gameObjectList.at(id); };
 

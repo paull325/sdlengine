@@ -1,6 +1,6 @@
 #include "stdinclude.h"
 #include "scene.h"
-#include "entity.h"
+#include "gameObject.h"
 
 namespace simpleEngine
 {

@@ -1,5 +1,6 @@
 #include "stdinclude.h"
-#include "entity.h"
+#include "gameObject.h"
+#include "keyListener.h"
 #include "globalScene.h"
 #include "window.h"
 

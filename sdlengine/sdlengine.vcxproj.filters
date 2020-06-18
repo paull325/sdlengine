@@ -65,5 +65,11 @@
     <ClInclude Include="engine\entity.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\gameObject.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\keyListener.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

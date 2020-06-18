@@ -3,7 +3,8 @@
 #include "engine/stdinclude.h"
 
 #include "engine/window.h"
-#include "engine/entity.h"
+#include "engine/keyListener.h"
+#include "engine/gameObject.h"
 #include "engine/globalScene.h"
 
 void startGame(simpleEngine::globalScene* global) /* add game components here */
@@ -45,3 +46,11 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
+/*
+        Todo:
+-change x and y pos to single data type
+-graphics scale factor
+-deltatime
+-movement via acceleration
+*/

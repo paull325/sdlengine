@@ -1,5 +1,5 @@
 #include "stdinclude.h"
-#include "entity.h"
+#include "gameObject.h"
 #include "globalScene.h"
 #include "window.h"
 

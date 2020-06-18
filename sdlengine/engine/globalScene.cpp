@@ -1,6 +1,6 @@
 #include "stdinclude.h"
 #include "globalScene.h"
-#include "entity.h"
+#include "keyListener.h"
 #include "window.h"
 
 namespace simpleEngine

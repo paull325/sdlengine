@@ -1,7 +1,8 @@
 #include "stdinclude.h"
-#include "entity.h"
+#include "gameObject.h"
 #include "window.h"
 #include "globalScene.h"
+
 namespace simpleEngine
 {
 	gameObject::gameObject()
