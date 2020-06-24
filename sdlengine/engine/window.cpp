@@ -1,5 +1,6 @@
 #include "stdinclude.h"
 #include "window.h"
+#include "geometry.h"
 
 namespace simpleEngine
 {
@@ -52,10 +53,10 @@ namespace simpleEngine
         return true;
 	}
 
-    bool window::renderImage(SDL_Surface* image, int xPosition, int yPosition)
+    bool window::renderImage(SDL_Surface* image, geometryPtr g)
     {
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-        SDL_Rect rect = { xPosition, yPosition, 10, 10 };
+        SDL_Rect rect = { g->x(), g->y(), g->xSize(), g->ySize() };
         SDL_RenderCopy(renderer, texture, NULL, &rect);
 
         SDL_DestroyTexture(texture);

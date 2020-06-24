@@ -1,5 +1,5 @@
 #include "stdinclude.h"
-#include "gameObject.h"
+#include "player.h"
 #include "keyListener.h"
 #include "globalScene.h"
 #include "window.h"
@@ -13,11 +13,11 @@ namespace simpleEngine
 		{
 			if (m_global->key()->checkKeyDown(SDL_SCANCODE_W))
 			{
-				this->move(0, -5);
+				m_geometry->move(0, -5);
 			}
 			else if (m_global->key()->checkKeyDown(SDL_SCANCODE_S))
 			{
-				this->move(0, 5);
+				m_geometry->move(0, 5);
 			}
 		}
 		/* horizontal movement */
@@ -25,11 +25,11 @@ namespace simpleEngine
 		{
 			if (m_global->key()->checkKeyDown(SDL_SCANCODE_A))
 			{
-				this->move(-5, 0);
+				m_geometry->move(-5, 0);
 			}
 			if (m_global->key()->checkKeyDown(SDL_SCANCODE_D))
 			{
-				this->move(5, 0);
+				m_geometry->move(5, 0);
 			}
 		}
 	}

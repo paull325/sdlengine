@@ -19,5 +19,5 @@ namespace simpleEngine
 	protected:
 		bool m_active;
 		std::string m_name;
-	};
+	}; 
 }

@@ -24,13 +24,6 @@ namespace simpleEngine
 		return true;
 	}
 
-	bool globalScene::unloadSceneById(int id)
-	{
-		m_sceneList.erase(m_sceneList.begin() + id);
-		return true;
-	}
-
-
 	scene* globalScene::getSceneByName(const std::string sceneName)
 	{
 		for (int i = 0; i < m_sceneList.size(); i++)
@@ -41,11 +34,6 @@ namespace simpleEngine
 			}
 		}
 		return nullptr;
-	}
-
-	scene* globalScene::getSceneById(int id)
-	{
-		return &m_sceneList.at(id);
 	}
 
 	bool globalScene::start()

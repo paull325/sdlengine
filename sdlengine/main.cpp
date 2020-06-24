@@ -5,6 +5,7 @@
 #include "engine/window.h"
 #include "engine/keyListener.h"
 #include "engine/gameObject.h"
+#include "engine/player.h"
 #include "engine/globalScene.h"
 
 void startGame(simpleEngine::globalScene* global) /* add game components here */
@@ -14,9 +15,14 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
 
         simpleEngine::player p(global);
         p.loadSprite("image.png");
+        p.geometry()->xSize(10);
+        p.geometry()->ySize(20);
 
         simpleEngine::gameObject g(global, "ABCDERF");
         g.loadSprite("image.png");
+        g.geometry()->xSize(10);
+        g.geometry()->ySize(10);
+        g.geometry()->move(100, 100);
 
         scene1.addGameObject<simpleEngine::player>(p);
         scene1.addGameObject<simpleEngine::gameObject>(g);
@@ -49,7 +55,7 @@ int main(int argc, char* argv[])
 
 /*
         Todo:
--change x and y pos to single data type
+-collision
 -graphics scale factor
 -deltatime
 -movement via acceleration

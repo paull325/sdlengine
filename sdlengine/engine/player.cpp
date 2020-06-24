@@ -1,5 +1,5 @@
 #include "stdinclude.h"
-#include "gameObject.h"
+#include "player.h"
 #include "globalScene.h"
 #include "window.h"
 
@@ -7,6 +7,8 @@ namespace simpleEngine
 {
 	player::player(globalScene* g)
 	{
+		m_active = true;
+		m_name = "";
 		m_global = g;
 
 		std::cout << "Player loaded." << std::endl;
@@ -27,10 +29,5 @@ namespace simpleEngine
 		{
 			this->updateSprite();
 		}
-	}
-
-	void player::updateSprite()
-	{
-		m_global->getWindow()->renderImage(m_sprite, m_xPosition, m_yPosition);
 	}
 }

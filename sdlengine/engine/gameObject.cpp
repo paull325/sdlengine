@@ -1,5 +1,6 @@
 #include "stdinclude.h"
 #include "gameObject.h"
+#include "geometry.h"
 #include "window.h"
 #include "globalScene.h"
 
@@ -9,6 +10,7 @@ namespace simpleEngine
 	{
 		m_active = false;
 		m_name = "";
+		m_geometry = std::make_shared<geometryObject>(0, 0, 0, 0);
 	}
 
 	gameObject::gameObject(globalScene* g)
@@ -16,6 +18,7 @@ namespace simpleEngine
 		m_active = false;
 		m_name = "";
 		m_global = g;
+		m_geometry = std::make_shared<geometryObject>(0, 0, 0, 0);
 
 		std::cout << "Game object " << m_name << " loaded." << std::endl;
 	}
@@ -25,6 +28,7 @@ namespace simpleEngine
 		m_active = true;
 		m_name = name;
 		m_global = g;
+		m_geometry = std::make_shared<geometryObject>(0, 0, 0, 0);
 
 		std::cout << "Game object " << m_name << " loaded." << std::endl;
 	}
@@ -52,6 +56,6 @@ namespace simpleEngine
 
 	void gameObject::updateSprite()
 	{
-		m_global->getWindow()->renderImage(m_sprite, m_xPosition, m_yPosition);
+		m_global->getWindow()->renderImage(m_sprite, m_geometry);
 	}
 }

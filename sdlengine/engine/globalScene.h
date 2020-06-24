@@ -12,10 +12,10 @@ namespace simpleEngine
 
 		bool addScene(scene& sc);
 		bool unloadSceneByName(const std::string sceneName);
-		bool unloadSceneById(int id);
+		bool unloadSceneById(int id) { m_sceneList.erase(m_sceneList.begin() + id); return true; };
 
 		scene* getSceneByName(const std::string sceneName);
-		scene* getSceneById(int id);
+		scene* getSceneById(int id) { return &m_sceneList.at(id); };
 
 		window* getWindow() { return m_window; };
 		keyListener* key() { return m_key; };
