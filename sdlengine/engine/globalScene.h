@@ -4,7 +4,7 @@
 
 namespace simpleEngine
 {
-	class globalScene : public scene
+	class globalScene
 	{
 	public:
 		globalScene(window* win, keyListener* key) { m_window = win; m_key = key; m_active = true; };
@@ -23,6 +23,7 @@ namespace simpleEngine
 		bool start();
 
 	private:
+		bool m_active;
 		keyListener* m_key;
 		window* m_window;
 		std::vector<scene> m_sceneList;

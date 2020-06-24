@@ -1,6 +1,7 @@
 #include "stdinclude.h"
 #include "scene.h"
 #include "gameObject.h"
+#include "player.h"
 
 namespace simpleEngine
 {
@@ -23,11 +24,11 @@ namespace simpleEngine
 			for (int i = 0; i < m_gameObjectList.size(); i++)
 			{
 				m_gameObjectList[i]->update();
+				this->updateCollisionFlags(m_gameObjectList[i]);
 			}
 		}
 	}
 
-	/*			GAMEOBJECT				*/
 	const gameObjectPtr scene::getGameObjectByName(const std::string& gameObjectName)
 	{
 		for (int i = 0; i < m_gameObjectList.size(); i++)
@@ -39,5 +40,26 @@ namespace simpleEngine
 		}
 		return nullptr;
 	}
-	/*			END	GAMEOBJECT			*/
+
+	void scene::updateCollisionFlags(gameObjectPtr obj)
+	{
+		m_player->COLLISION_LEFT = false;
+		m_player->COLLISION_RIGHT = false;
+
+		if (m_player->geometry()->x() + 5 > obj->geometry()->x()
+			&& m_player->geometry()->x() - 5 < obj->geometry()->x() + obj->geometry()->xSize()
+			&& m_player->geometry()->y() < obj->geometry()->y() + obj->geometry()->ySize()
+			&& m_player->geometry()->y() + m_player->geometry()->ySize() > obj->geometry()->y())
+		{
+			m_player->COLLISION_LEFT = true;
+		}
+
+		if (m_player->geometry()->x() + m_player->geometry()->xSize() + 5 > obj->geometry()->x()
+			&& m_player->geometry()->x() + m_player->geometry()->xSize() - 5 < obj->geometry()->x() + obj->geometry()->xSize()
+			&& m_player->geometry()->y() < obj->geometry()->y() + obj->geometry()->ySize()
+			&& m_player->geometry()->y() + m_player->geometry()->ySize() > obj->geometry()->y())
+		{
+			m_player->COLLISION_RIGHT = true;
+		}
+	}
 }

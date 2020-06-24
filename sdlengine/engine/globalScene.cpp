@@ -51,8 +51,6 @@ namespace simpleEngine
 		{
 			m_key->update();
 
-			this->update();				//update global scene
-
 			m_sceneList[m_sceneID].update();			//update scene
 
 			m_window->render();

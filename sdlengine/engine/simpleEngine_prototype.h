@@ -9,6 +9,7 @@ namespace simpleEngine
 	class keyListener;
 	class window;
 	class globalScene;
+	class scene;
 
 	using gameObjectPtr = std::shared_ptr<gameObject>;
 	using playerPtr = std::shared_ptr<player>;

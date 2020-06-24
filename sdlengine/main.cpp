@@ -7,6 +7,7 @@
 #include "engine/gameObject.h"
 #include "engine/player.h"
 #include "engine/globalScene.h"
+#include "engine/scene.h"
 
 void startGame(simpleEngine::globalScene* global) /* add game components here */
 {
@@ -20,8 +21,8 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
 
         simpleEngine::gameObject g(global, "ABCDERF");
         g.loadSprite("image.png");
-        g.geometry()->xSize(10);
-        g.geometry()->ySize(10);
+        g.geometry()->xSize(300);
+        g.geometry()->ySize(100);
         g.geometry()->move(100, 100);
 
         scene1.addGameObject<simpleEngine::player>(p);

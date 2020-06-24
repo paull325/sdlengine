@@ -5,10 +5,17 @@
 
 namespace simpleEngine
 {
+	player::player()
+	{
+		m_active = true;
+		m_name = "_PLAYER";
+		std::cout << "Player loaded." << std::endl;
+	}
+
 	player::player(globalScene* g)
 	{
 		m_active = true;
-		m_name = "";
+		m_name = "_PLAYER";
 		m_global = g;
 
 		std::cout << "Player loaded." << std::endl;

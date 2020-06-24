@@ -23,11 +23,11 @@ namespace simpleEngine
 		/* horizontal movement */
 		if (!(m_global->key()->checkKeyDown(SDL_SCANCODE_A) && m_global->key()->checkKeyDown(SDL_SCANCODE_D)))
 		{
-			if (m_global->key()->checkKeyDown(SDL_SCANCODE_A))
+			if (m_global->key()->checkKeyDown(SDL_SCANCODE_A) && !COLLISION_LEFT)
 			{
 				m_geometry->move(-5, 0);
 			}
-			if (m_global->key()->checkKeyDown(SDL_SCANCODE_D))
+			if (m_global->key()->checkKeyDown(SDL_SCANCODE_D) && !COLLISION_RIGHT)
 			{
 				m_geometry->move(5, 0);
 			}

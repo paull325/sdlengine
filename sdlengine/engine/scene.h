@@ -1,5 +1,6 @@
 #pragma once
 #include "stdinclude.h"
+#include "player.h"
 
 namespace simpleEngine
 {
@@ -14,12 +15,18 @@ namespace simpleEngine
 		const std::string& sceneName() const { return m_sceneName; }
 
 		void load();
-		void update();
+		virtual void update();
 
 		void activate() { m_active = true; };
 		void deactivate() { m_active = false; };
 
 		template <typename T> void addGameObject(T& obj) { m_gameObjectList.emplace_back(std::make_shared<T>(obj)); };
+		template <> void addGameObject<player>(player& obj)
+		{
+			m_player = std::make_shared<player>(obj);
+			m_gameObjectList.emplace_back(m_player);
+		};
+
 		const gameObjectPtr getGameObjectByName(const std::string& gameObjectName);
 		const gameObjectPtr getGameObjectById(int id) { return m_gameObjectList.at(id); };
 
@@ -28,7 +35,11 @@ namespace simpleEngine
 
 		std::vector<gameObjectPtr> m_gameObjectList;
 
+		playerPtr m_player;
+
 		std::string m_sceneName;
+
+		void updateCollisionFlags(gameObjectPtr obj);
 	};
 
 }
