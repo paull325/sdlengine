@@ -21,6 +21,11 @@ namespace simpleEngine
 
 		virtual void updateSprite();
 
+		bool COLLISION_LEFT;
+		bool COLLISION_RIGHT;
+		bool COLLISION_TOP;
+		bool COLLISION_BOTTOM;
+
 	protected:
 		globalScene* m_global;
 		SDL_Surface* m_sprite;

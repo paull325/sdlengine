@@ -14,10 +14,5 @@ namespace simpleEngine
 
 		/*		FUNCTIONAL		*/
 		void doMovement();
-		
-		bool COLLISION_LEFT;
-		bool COLLISION_RIGHT;
-		bool COLLISION_TOP;
-		bool COLLISION_BOTTOM;
 	};
 }

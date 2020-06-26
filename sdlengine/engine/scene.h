@@ -39,7 +39,7 @@ namespace simpleEngine
 
 		std::string m_sceneName;
 
-		void updateCollisionFlags(gameObjectPtr obj);
+		void updateCollisionFlags(gameObjectPtr obj, int i_);
 	};
 
 }

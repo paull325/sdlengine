@@ -17,6 +17,8 @@ namespace simpleEngine
 		m_active = true;
 		m_name = "_PLAYER";
 		m_global = g;
+		m_geometry->xVel(5);
+		m_geometry->yVel(5);
 
 		std::cout << "Player loaded." << std::endl;
 	}

@@ -11,13 +11,13 @@ namespace simpleEngine
 		/* vertical movement */
 		if (!(m_global->key()->checkKeyDown(SDL_SCANCODE_W) && m_global->key()->checkKeyDown(SDL_SCANCODE_S)))
 		{
-			if (m_global->key()->checkKeyDown(SDL_SCANCODE_W))
+			if (m_global->key()->checkKeyDown(SDL_SCANCODE_W) && !COLLISION_TOP)
 			{
-				m_geometry->move(0, -5);
+				m_geometry->move(0, -m_geometry->yVel());
 			}
-			else if (m_global->key()->checkKeyDown(SDL_SCANCODE_S))
+			else if (m_global->key()->checkKeyDown(SDL_SCANCODE_S) && !COLLISION_BOTTOM)
 			{
-				m_geometry->move(0, 5);
+				m_geometry->move(0, m_geometry->yVel());
 			}
 		}
 		/* horizontal movement */
@@ -25,11 +25,11 @@ namespace simpleEngine
 		{
 			if (m_global->key()->checkKeyDown(SDL_SCANCODE_A) && !COLLISION_LEFT)
 			{
-				m_geometry->move(-5, 0);
+				m_geometry->move(-m_geometry->xVel(), 0);
 			}
 			if (m_global->key()->checkKeyDown(SDL_SCANCODE_D) && !COLLISION_RIGHT)
 			{
-				m_geometry->move(5, 0);
+				m_geometry->move(m_geometry->xVel(), 0);
 			}
 		}
 	}

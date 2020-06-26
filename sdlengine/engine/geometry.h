@@ -26,7 +26,13 @@ namespace simpleEngine
 		int ySize() { return m_ySize; };
 		void ySize(int ySize) { m_ySize = ySize; };
 
+		int xVel() { return m_xVel; };
+		void xVel(int xVel) { m_xVel = xVel; };
+
+		int yVel() { return m_yVel; };
+		void yVel(int yVel) { m_yVel = yVel; };
+
 	protected:
-		int m_xPosition, m_yPosition, m_xSize, m_ySize;
+		int m_xPosition, m_yPosition, m_xSize, m_ySize, m_xVel, m_yVel;
 	};
 }
