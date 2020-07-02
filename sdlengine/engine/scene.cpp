@@ -23,7 +23,6 @@ namespace simpleEngine
 		{
 			for (int i = 0; i < m_gameObjectList.size(); i++)
 			{
-
 				this->updateCollisionFlags(m_gameObjectList[i], i);
 				m_gameObjectList[i]->update();
 			}
@@ -55,49 +54,16 @@ namespace simpleEngine
 			{
 				continue;
 			}
-
-			if (obj->geometry()->y() + obj->geometry()->ySize() > m_gameObjectList[i]->geometry()->y() && obj->geometry()->y() < m_gameObjectList[i]->geometry()->y() + m_gameObjectList[i]->geometry()->ySize())
+			if (obj->layer() == m_gameObjectList[i]->layer())
 			{
-				if (obj->geometry()->x() - obj->geometry()->xVel() < m_gameObjectList[i]->geometry()->x() + m_gameObjectList[i]->geometry()->xSize())
+				if (obj->geometry()->y() + obj->geometry()->ySize() > m_gameObjectList[i]->geometry()->y() && obj->geometry()->y() < m_gameObjectList[i]->geometry()->y() + m_gameObjectList[i]->geometry()->ySize())
 				{
-					obj->COLLISION_LEFT = true;
+					if (obj->geometry()->x() - obj->geometry()->xVel() < m_gameObjectList[i]->geometry()->x() + m_gameObjectList[i]->geometry()->xSize())
+					{
+						obj->COLLISION_LEFT = true;
+					}
 				}
 			}
-
-			/*if (obj->geometry()->x() - obj->geometry()->xVel() < m_gameObjectList[i]->geometry()->x() + m_gameObjectList[i]->geometry()->xSize())
-			{
-				obj->COLLISION_RIGHT = true;
-			}
-			else
-			{
-				obj->COLLISION_RIGHT = false;
-			}
-
-			if (obj->geometry()->y() + obj->geometry()->ySize() + obj->geometry()->yVel() > m_gameObjectList[i]->geometry()->y())
-			{
-				obj->COLLISION_TOP = true;
-			}
-			else
-			{
-				obj->COLLISION_TOP = false;
-			}
-
-			if (obj->geometry()->y() - obj->geometry()->yVel() < m_gameObjectList[i]->geometry()->y() + m_gameObjectList[i]->geometry()->ySize())
-			{
-				obj->COLLISION_BOTTOM = true;
-			}
-			else
-			{
-				obj->COLLISION_BOTTOM = false;
-			}*/
-
-			/*if (m_player->geometry()->x() + m_player->geometry()->xSize() + 5 > obj->geometry()->x()
-				&& m_player->geometry()->x() + m_player->geometry()->xSize() - 5 < obj->geometry()->x() + obj->geometry()->xSize()
-				&& m_player->geometry()->y() < obj->geometry()->y() + obj->geometry()->ySize()
-				&& m_player->geometry()->y() + m_player->geometry()->ySize() > obj->geometry()->y())
-			{
-				m_player->COLLISION_RIGHT = true;
-			}*/
 		}
 	}
 }

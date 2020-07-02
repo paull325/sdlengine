@@ -10,7 +10,7 @@ namespace simpleEngine
 		~window();
 
 		bool create(const std::string& windowTitle, int windowWidth, int windowHeight);
-		bool renderImage(SDL_Surface* image, geometryPtr g);
+		bool renderImage(SDL_Surface* image, geometryPtr g, unsigned char xTile, unsigned char yTile, bool look);
 		void render();
 		void reset();
 

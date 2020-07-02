@@ -14,19 +14,45 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
     {
         simpleEngine::scene scene1("scene1");
 
-        simpleEngine::player p(global);
-        p.loadSprite("image.png");
-        p.geometry()->xSize(10);
-        p.geometry()->ySize(20);
-
-        simpleEngine::gameObject g(global, "ABCDERF");
+        simpleEngine::gameObject g(global, "Background_obj");
         g.loadSprite("image.png");
-        g.geometry()->xSize(300);
-        g.geometry()->ySize(100);
-        g.geometry()->move(100, 100);
+        g.geometry()->xSize(800);
+        g.geometry()->ySize(600);
 
-        scene1.addGameObject<simpleEngine::player>(p);
+        simpleEngine::gameObject text(global, "text");
+        text.loadSprite("anno.png");
+        text.geometry()->set(700, 50, 50, 50);
+
+        simpleEngine::gameObject text2(global, "text2");
+        text2.loadSprite("anno.png");
+        text2.geometry()->set(700, 120, 50, 50);
+
+        simpleEngine::gameObject letter(global, "letter");
+        letter.tile(9, 5);
+        letter.loadSprite("anno.png");
+        letter.geometry()->set(640, 50, 50, 50);
+
+        simpleEngine::gameObject letter2(global, "letter2");
+        letter2.tile(8, 5);
+        letter2.loadSprite("anno.png");
+        letter2.geometry()->set(640, 120, 50, 50);
+
+        simpleEngine::player p(global);
+        p.layer(1);
+        p.loadSprite("sprite.png");
+        p.maxSpeed(10.0);
+        p.geometry()->xAcc(2);
+        p.geometry()->yAcc(2);
+        p.geometry()->xSize(60);
+        p.geometry()->ySize(60);
+
         scene1.addGameObject<simpleEngine::gameObject>(g);
+        scene1.addGameObject<simpleEngine::gameObject>(text);
+        scene1.addGameObject<simpleEngine::gameObject>(text2);
+        scene1.addGameObject<simpleEngine::gameObject>(letter);
+        scene1.addGameObject<simpleEngine::gameObject>(letter2);
+        scene1.addGameObject<simpleEngine::player>(p);
+
         global->addScene(scene1);
     }
     global->start();
@@ -39,7 +65,7 @@ int main(int argc, char* argv[])
 
     simpleEngine::window g_window;
 
-    if (!g_window.create("Title", 800, 600))
+    if (!g_window.create("Wizard Game", 800, 600))
     {
         std::cout << "Error while creating window" << std::endl;
         return 1;
@@ -55,9 +81,11 @@ int main(int argc, char* argv[])
 }
 
 /*
+        WIP:
+-movement via acceleration (p_movement.cpp) (bugged, accel not correct)
+-collision (scene.cpp)
+
         Todo:
--collision
 -graphics scale factor
 -deltatime
--movement via acceleration
 */

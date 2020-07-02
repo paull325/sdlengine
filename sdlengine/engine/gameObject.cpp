@@ -8,6 +8,7 @@ namespace simpleEngine
 {
 	gameObject::gameObject()
 	{
+		m_layer = 0;
 		m_active = false;
 		m_name = "";
 		m_geometry = std::make_shared<geometryObject>(0, 0, 0, 0);
@@ -15,6 +16,7 @@ namespace simpleEngine
 
 	gameObject::gameObject(globalScene* g)
 	{
+		m_layer = 0;
 		m_active = false;
 		m_name = "";
 		m_global = g;
@@ -25,6 +27,7 @@ namespace simpleEngine
 
 	gameObject::gameObject(globalScene* g, const std::string& name)
 	{
+		m_layer = 0;
 		m_active = true;
 		m_name = name;
 		m_global = g;
@@ -56,6 +59,6 @@ namespace simpleEngine
 
 	void gameObject::updateSprite()
 	{
-		m_global->getWindow()->renderImage(m_sprite, m_geometry);
+		m_global->getWindow()->renderImage(m_sprite, m_geometry, m_xTile, m_yTile, LOOK_DIR);
 	}
 }

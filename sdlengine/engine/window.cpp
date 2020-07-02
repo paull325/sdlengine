@@ -53,12 +53,23 @@ namespace simpleEngine
         return true;
 	}
 
-    bool window::renderImage(SDL_Surface* image, geometryPtr g)
+    bool window::renderImage(SDL_Surface* image, geometryPtr g, unsigned char xTile, unsigned char yTile, bool look)
     {
-        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-        SDL_Rect rect = { g->x(), g->y(), g->xSize(), g->ySize() };
-        SDL_RenderCopy(renderer, texture, NULL, &rect);
+        SDL_Surface* new_s = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_RGBA8888, 0);
 
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_s);
+
+        SDL_Rect rect = { g->x(), g->y(), g->xSize(), g->ySize() };
+        SDL_Rect section_rect = { 16*xTile, 16*yTile, 16, 16 };
+        if (!look)
+        {
+            SDL_RenderCopy(renderer, texture, &section_rect, &rect);
+        }
+        else
+        {
+            SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+            SDL_RenderCopyEx(renderer, texture, &section_rect, &rect, 0, nullptr, flip);
+        }
         SDL_DestroyTexture(texture);
 
         return true;
