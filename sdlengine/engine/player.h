@@ -1,5 +1,7 @@
 #pragma once
+#include "stdinclude.h"
 #include "gameObject.h"
+#include "globalScene.h"
 
 namespace simpleEngine
 {
@@ -21,11 +23,31 @@ namespace simpleEngine
 
 		/*		FUNCTIONAL		*/
 		void doMovement();
-		int doWalkingAnimation();
 
 	private:
 		double m_maxSpeed;
-		unsigned char m_anim;
+		unsigned char m_anim;	//animation state
 		char X_AXIS, Y_AXIS;
+
+		int anim_frame;
+		std::array<int, 4> ANIM_walking = { 0, 1, 0, 2 };
+
+		template<std::size_t SIZE>
+		int playAnimation(std::array<int, SIZE> anim, int frameStep)
+		{
+			if (m_global->frame() % frameStep == 0)
+			{
+				if (anim_frame < anim.size() - 1)
+				{
+					anim_frame++;
+				}
+				else
+				{
+					anim_frame = 0;
+				}
+			}
+
+			return anim[anim_frame];
+		}
 	};
 }

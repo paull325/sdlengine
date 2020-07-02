@@ -1,6 +1,5 @@
 #pragma once
 #include "stdinclude.h"
-#include "player.h"
 
 namespace simpleEngine
 {

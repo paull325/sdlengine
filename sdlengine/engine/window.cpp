@@ -55,7 +55,7 @@ namespace simpleEngine
 
     bool window::renderImage(SDL_Surface* image, geometryPtr g, unsigned char xTile, unsigned char yTile, bool look)
     {
-        SDL_Surface* new_s = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_RGBA8888, 0);
+        SDL_Surface* new_s = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_RGBA8888, 0xFFFFFF); //add alpha
 
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_s);
 

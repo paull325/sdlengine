@@ -49,6 +49,9 @@ namespace simpleEngine
 
 		while (m_active)
 		{
+
+			m_frame++;
+
 			m_key->update();
 
 			m_sceneList[m_sceneID].update();			//update scene

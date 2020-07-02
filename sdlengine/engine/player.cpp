@@ -38,7 +38,7 @@ namespace simpleEngine
 				m_xTile = 0;
 				break;
 			case WALKING:
-				m_xTile = this->doWalkingAnimation();
+				m_xTile = this->playAnimation(ANIM_walking, 4);
 				break;
 		}
 	}

@@ -41,8 +41,8 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
         p.layer(1);
         p.loadSprite("sprite.png");
         p.maxSpeed(10.0);
-        p.geometry()->xAcc(2);
-        p.geometry()->yAcc(2);
+        p.geometry()->xAcc(1);
+        p.geometry()->yAcc(1);
         p.geometry()->xSize(60);
         p.geometry()->ySize(60);
 

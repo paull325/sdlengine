@@ -7,7 +7,7 @@ namespace simpleEngine
 	class globalScene
 	{
 	public:
-		globalScene(window* win, keyListener* key) { m_window = win; m_key = key; m_active = true; };
+		globalScene(window* win, keyListener* key) { m_frame = 0;  m_window = win; m_key = key; m_active = true; };
 		~globalScene() {};
 
 		bool addScene(scene& sc);
@@ -17,6 +17,8 @@ namespace simpleEngine
 		scene* getSceneByName(const std::string sceneName);
 		scene* getSceneById(int id) { return &m_sceneList.at(id); };
 
+		int frame() { return m_frame; };
+
 		window* getWindow() { return m_window; };
 		keyListener* key() { return m_key; };
 
@@ -24,6 +26,7 @@ namespace simpleEngine
 
 	private:
 		bool m_active;
+		int m_frame;
 		keyListener* m_key;
 		window* m_window;
 		std::vector<scene> m_sceneList;
