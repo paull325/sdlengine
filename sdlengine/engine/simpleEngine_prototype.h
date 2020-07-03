@@ -10,6 +10,8 @@ namespace simpleEngine
 	class window;
 	class globalScene;
 	class scene;
+	template<std::size_t SIZE>
+	class animation;
 
 	using gameObjectPtr = std::shared_ptr<gameObject>;
 	using playerPtr = std::shared_ptr<player>;
