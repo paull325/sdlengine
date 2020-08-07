@@ -28,7 +28,6 @@ namespace simpleEngine
 		char X_AXIS, Y_AXIS;
 
 		animation<4> walking = animation<4>({ 0, 1, 0, 2 });
-		animation<2> idle = animation<2>({ 0, 1 });
 
 		/*		FUNCTIONAL		*/
 		void doMovement();

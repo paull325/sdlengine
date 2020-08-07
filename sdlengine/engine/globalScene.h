@@ -24,6 +24,8 @@ namespace simpleEngine
 
 		bool start();
 
+		bool loadSceneFile(const std::string fileName);
+
 	private:
 		bool m_active;
 		int m_frame;

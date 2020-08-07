@@ -23,7 +23,6 @@ namespace simpleEngine
 		m_geometry->yAcc(1);
 
 		walking.global(m_global);
-		idle.global(m_global);
 
 		std::cout << "Player loaded." << std::endl;
 	}
@@ -38,7 +37,7 @@ namespace simpleEngine
 		switch (m_anim)
 		{
 			case IDLE:
-				m_xTile = idle.playAnimation(8);
+				m_xTile = walking.playAnimation(12);
 				break;
 			case WALKING:
 				m_xTile = walking.playAnimation(4);

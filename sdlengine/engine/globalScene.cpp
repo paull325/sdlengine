@@ -70,4 +70,9 @@ namespace simpleEngine
 		m_window->reset();
 		return true;
 	}
+
+	bool globalScene::loadSceneFile(const std::string fileName)
+	{
+		return true;
+	}
 }

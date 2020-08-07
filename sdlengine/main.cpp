@@ -37,6 +37,8 @@ void startGame(simpleEngine::globalScene* global) /* add game components here */
         letter2.loadSprite("anno.png");
         letter2.geometry()->set(640, 120, 50, 50);
 
+        global->loadSceneFile("scene.sc");
+
         simpleEngine::player p(global);
         p.layer(1);
         p.loadSprite("sprite.png");
